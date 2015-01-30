@@ -19,9 +19,26 @@
             .state("game", {
               url: '/',
               templateUrl: "game.html",
-              // controller: "GameCtrl"
+              controller: "GameCtrl"
             });
             $urlRouterProvider.otherwise('/');
+        })
+        .factory('rows', function(){
+          var rows = [];
+          return {
+            board: function(){
+              return rows;
+            }
+          }
+        })
+        .controller("GameCtrl", function($scope, $stateParams, $state, $http, $resource){
+
+          $scope.newGame = function(){
+            $scope.history = [];
+            $scope.board = init($scope.height, $scope.width);
+          };
+          $scope.height = 10
+          $scope.width = 20
         })
     </script>
   </body>
