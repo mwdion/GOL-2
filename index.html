@@ -4,6 +4,18 @@
     <meta charset="utf-8">
     <title>Conway's Game of Life</title>
     <link rel="stylesheet" href= "bower_components/bootstrap/dist/css/bootstrap.css">
+    <style>
+      td {
+        background: grey;
+        width: 20px;
+      }
+      td.alive {
+    background-color: green;
+      }
+      td.dead {
+    background-color: red;
+    }
+    </style>
   </head>
   <body>
     <div class="container">
@@ -11,20 +23,23 @@
     </div>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/angular-event-emitter/angular-event-emitter.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
     <script src="game.js"></script>
       <h1>Welcome to Conway's Game of Life</h1>
       <div ng-controller = "GolController">
-        <!-- <table id= "">
-          <tr = ng-repeat "">
-            <td = ng-repeat "">
+        <table>
+          <tr ng-repeat="row in board">
+            <td ng-repeat="cell in row">
+             <span ng-show="cell">O</span>
             </td>
-          </tr>
-        </table> -->
-          <button class="btn btn-success" ng-click="start()">Start Game</button>
-          <button class="btn btn-danger" ng-click="stop()">Stop Game</button>
-          Height
+        </tr>
+    </table>
+          <button class="btn btn-success" ng-click="newGame()">Start Game</button>
+          <button class="btn btn-danger" ng-click="nextMutation()">Next</button>
+          Height:
           <input type="text" placeholder="Height" ng-model = "height">
-          Width
+          Width:
           <input type="text" placeholder="Width" ng-model = "width">
         </div>
   </body>
