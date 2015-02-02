@@ -1,10 +1,9 @@
 <!doctype html>
-<html ng-app="myapp">
+<html ng-app="golApp">
   <head>
     <meta charset="utf-8">
     <title>Conway's Game of Life</title>
     <link rel="stylesheet" href= "bower_components/bootstrap/dist/css/bootstrap.css">
-    
   </head>
   <body>
     <div class="container">
@@ -12,34 +11,21 @@
     </div>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-    <script>
-      angular.module('myapp', ['ui.router'])
-        .config(function($stateProvider, $urlRouterProvider){
-          $stateProvider
-            .state("game", {
-              url: '/',
-              templateUrl: "game.html",
-              controller: "GameCtrl"
-            });
-            $urlRouterProvider.otherwise('/');
-        })
-        .factory('rows', function(){
-          var rows = [];
-          return {
-            board: function(){
-              return rows;
-            }
-          }
-        })
-        .controller("GameCtrl", function($scope, $stateParams, $state, $http, $resource){
-
-          $scope.newGame = function(){
-            $scope.history = [];
-            $scope.board = init($scope.height, $scope.width);
-          };
-          $scope.height = 10
-          $scope.width = 20
-        })
-    </script>
+    <script src="game.js"></script>
+      <h1>Welcome to Conway's Game of Life</h1>
+      <div ng-controller = "GolController">
+        <!-- <table id= "">
+          <tr = ng-repeat "">
+            <td = ng-repeat "">
+            </td>
+          </tr>
+        </table> -->
+          <button class="btn btn-success" ng-click="start()">Start Game</button>
+          <button class="btn btn-danger" ng-click="stop()">Stop Game</button>
+          Height
+          <input type="text" placeholder="Height" ng-model = "height">
+          Width
+          <input type="text" placeholder="Width" ng-model = "width">
+        </div>
   </body>
 </html>
